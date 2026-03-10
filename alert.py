@@ -13,8 +13,8 @@ def send_alert(subject,body):
         msg['Subject'] = f"[ALERT]{subject}"
         msg.attach(MIMEText(body,'plain'))
         with smtplib.SMTP(config.SMTP_SERVER,config.SMTP_PORT) as server:
-            server.startrtls()
-            server.login(config.EMAIL_SENDER,config.EMAIL_PASSOWRD)
+            server.starttls()
+            server.login(config.EMAIL_SENDER,config.EMAIL_PASSWORD)
             server.send_message(msg)
             print(f"Alert sent{subject}")
     except Exception as e:
